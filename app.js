@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const path = require('path')
 var corsOptions = {
     origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -19,9 +19,9 @@ initDB();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use('/', userRouter);
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("*", (req, res) => {
-  res.sendFile(__dirname, "../client/build/index.html")
+  res.sendFile(__dirname, "./client/build/index.html")
 })
 
 const PORT = process.env.PORT || 8000;
