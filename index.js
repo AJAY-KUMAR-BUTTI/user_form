@@ -14,7 +14,7 @@ dotenv.config();
 
 const { initDB } = require('./dbConfig');
 const userRouter = require('./routes/userRouter');
-const { connect } = require('mongoose');
+
 
 initDB();
 
@@ -28,11 +28,6 @@ app.get("*", (req, res) => {
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(8000, async () => {
-  try {
-    await connect();
+app.listen(PORT, () => {
     console.log(`server is connected on PORT ${PORT}`);
-  } catch(err) {
-    console.log(err.message)
-  }
 })
