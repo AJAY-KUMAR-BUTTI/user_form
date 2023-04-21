@@ -19,8 +19,12 @@ initDB();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use('/', userRouter);
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(__dirname, "../client/build/index.html")
+})
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.listen(8000, () => {
     console.log(`server is connected on PORT ${PORT}`);
